@@ -19,7 +19,11 @@ func _physics_process(delta):
 	
 	position += velocity * delta
 	
+	# Animasi gerakan
 	if velocity != Vector2.ZERO:
 		_animated_sprite.play("run")
 	else:
 		_animated_sprite.play("idle")
+	
+	# Dapat menabrak collision
+	move_and_slide()

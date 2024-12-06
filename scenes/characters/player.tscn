@@ -87,7 +87,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yfg0u"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_asuwr"]
+size = Vector2(26, 12)
 
 [node name="player" type="Node2D"]
 
@@ -98,11 +99,9 @@ script = ExtResource("1_h3mog")
 sprite_frames = SubResource("SpriteFrames_2o88b")
 animation = &"run"
 autoplay = "idle"
-frame = 4
-frame_progress = 0.542811
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="PlayerBody"]
-position = Vector2(0, 1)
-shape = SubResource("CapsuleShape2D_yfg0u")
+position = Vector2(1, 11)
+shape = SubResource("RectangleShape2D_asuwr")
 
 [node name="Camera2D" type="Camera2D" parent="PlayerBody"]
