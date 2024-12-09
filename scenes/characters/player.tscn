@@ -180,7 +180,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -239,6 +239,7 @@ libraries = {
 }
 
 [node name="SlashSprite" type="Sprite2D" parent="PlayerBody/Sword"]
+visible = false
 position = Vector2(32, 2)
 scale = Vector2(1.9, 1.9)
 texture = ExtResource("5_252ed")
