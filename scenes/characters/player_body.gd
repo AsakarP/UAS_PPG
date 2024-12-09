@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var animated_sprite = $PlayerSprite
 const SPEED = 150
 
-@onready var sword: Node2D = get_node("Sword")
+@onready var sword: Node2D = get_node("PlayerSword")
 @onready var sword_animation_player : AnimationPlayer = sword.get_node("SwordAnimationPlayer")
 
 func _physics_process(delta):
@@ -15,20 +15,14 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_attack") and not sword_animation_player.is_playing():
 		sword_animation_player.play("attack")
 		
-	
-	
 	sword.rotation = mouse_direction.angle()
 	if sword.scale.y == 1 and mouse_direction.x < 0:
 		sword.scale.y = -1
 	elif sword.scale.y == -1 and mouse_direction.x > 0:
 		sword.scale.y = 1
 		
-	
-	
-	
-	
-	var velocity = Vector2.ZERO
 	# Movement WASD
+	var velocity = Vector2.ZERO
 	if Input.is_key_pressed(KEY_W):
 		velocity.y -= SPEED
 	if Input.is_key_pressed(KEY_A):
