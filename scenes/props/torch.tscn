@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://brsvgdpelwdco"]
+
+[ext_resource type="Texture2D" uid="uid://j7qb1uo0y2uu" path="res://sprites/torch/torch_1.png" id="1_krxnt"]
+[ext_resource type="Texture2D" uid="uid://c3ycn5pfsw3fh" path="res://sprites/torch/torch_2.png" id="2_v8omt"]
+[ext_resource type="Texture2D" uid="uid://be6ntpbyct8mx" path="res://sprites/torch/torch_3.png" id="3_gtxoe"]
+[ext_resource type="Texture2D" uid="uid://u4ygoqtl2cxp" path="res://sprites/torch/torch_4.png" id="4_mptmr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_37bua"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_krxnt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_v8omt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_gtxoe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mptmr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_u1itn"]
+offsets = PackedFloat32Array(0, 0.675325)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_i1c0a"]
+gradient = SubResource("Gradient_u1itn")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="torch" type="Node2D"]
+
+[node name="TorchAnimatedSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_37bua")
+autoplay = "default"
+frame_progress = 0.185751
+
+[node name="TorchLight" type="PointLight2D" parent="."]
+color = Color(1, 1, 0.227451, 1)
+shadow_enabled = true
+shadow_filter = 1
+texture = SubResource("GradientTexture2D_i1c0a")

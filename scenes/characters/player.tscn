@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://c0byy1eageio8"]
+[gd_scene load_steps=17 format=3 uid="uid://c0byy1eageio8"]
 
 [ext_resource type="Script" path="res://scenes/characters/player_body.gd" id="1_h3mog"]
 [ext_resource type="Texture2D" uid="uid://ixlyiw31mk6g" path="res://sprites/Pixel Crawler/Heroes/Knight/Idle/Idle-Sheet.png" id="1_prau1"]
 [ext_resource type="Texture2D" uid="uid://bahu7qysaaln0" path="res://sprites/Pixel Crawler/Heroes/Knight/Run/Run-Sheet.png" id="3_f0733"]
+[ext_resource type="Texture2D" uid="uid://1nopjlo713ty" path="res://sprites/light.png" id="4_w500s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vfx3w"]
 atlas = ExtResource("1_prau1")
@@ -105,3 +106,10 @@ position = Vector2(1, 11)
 shape = SubResource("RectangleShape2D_asuwr")
 
 [node name="Camera2D" type="Camera2D" parent="PlayerBody"]
+
+[node name="PlayerLight" type="PointLight2D" parent="PlayerBody"]
+energy = 0.5
+shadow_enabled = true
+shadow_filter = 1
+texture = ExtResource("4_w500s")
+texture_scale = 0.5
