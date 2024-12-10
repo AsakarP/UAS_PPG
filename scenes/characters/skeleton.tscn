@@ -104,4 +104,5 @@ shape = SubResource("CircleShape2D_7mgua")
 debug_enabled = true
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
 autostart = true
