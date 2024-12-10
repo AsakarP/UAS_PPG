@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c0byy1eageio8"]
+[gd_scene load_steps=34 format=3 uid="uid://c0byy1eageio8"]
 
 [ext_resource type="Script" path="res://scenes/characters/player_body.gd" id="1_h3mog"]
 [ext_resource type="Texture2D" uid="uid://ixlyiw31mk6g" path="res://sprites/Pixel Crawler/Heroes/Knight/Idle/Idle-Sheet.png" id="1_prau1"]
@@ -7,8 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://1nopjlo713ty" path="res://sprites/light.png" id="4_w500s"]
 [ext_resource type="Texture2D" uid="uid://co14tgrxutrb6" path="res://sprites/effects (new)/slash_effect_anim_spritesheet.png" id="5_252ed"]
 [ext_resource type="Texture2D" uid="uid://cms4ypximlrxr" path="res://sprites/Pixel Crawler/Weapons/Hands/Hands.png" id="7_dvd1y"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_dikwq"]
+[ext_resource type="Texture2D" uid="uid://bubuy5envswj5" path="res://sprites/cosmetics/fairyPink.png" id="7_xljmh"]
 
 [sub_resource type="Animation" id="Animation_n6wuq"]
 length = 0.001
@@ -120,6 +119,8 @@ _data = {
 "attack": SubResource("Animation_2sy4e")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_dikwq"]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_vfx3w"]
 atlas = ExtResource("1_prau1")
 region = Rect2(0, 0, 32, 32)
@@ -212,66 +213,134 @@ gradient = SubResource("Gradient_qmvlr")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[node name="player" type="Node2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_luxcc"]
+atlas = ExtResource("7_xljmh")
+region = Rect2(0, 0, 32, 32)
 
-[node name="PlayerBody" type="CharacterBody2D" parent="."]
-collision_layer = 2
+[sub_resource type="AtlasTexture" id="AtlasTexture_rs5t6"]
+atlas = ExtResource("7_xljmh")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqts1"]
+atlas = ExtResource("7_xljmh")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6s8p"]
+atlas = ExtResource("7_xljmh")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vc16q"]
+atlas = ExtResource("7_xljmh")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58ac3"]
+atlas = ExtResource("7_xljmh")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pa0i0"]
+atlas = ExtResource("7_xljmh")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0dbd7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_luxcc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rs5t6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aqts1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p6s8p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vc16q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_58ac3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pa0i0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="PlayerBody" type="CharacterBody2D"]
+collision_layer = 3
 collision_mask = 5
 script = ExtResource("1_h3mog")
 
-[node name="PlayerCollision" type="CollisionShape2D" parent="PlayerBody"]
-position = Vector2(1, 8)
-shape = SubResource("CircleShape2D_dikwq")
+[node name="PlayerSword" type="Node2D" parent="."]
 
-[node name="PlayerSword" type="Node2D" parent="PlayerBody"]
-
-[node name="Sword" type="Node2D" parent="PlayerBody/PlayerSword"]
+[node name="Sword" type="Node2D" parent="PlayerSword"]
 rotation = -1.5708
 
-[node name="SwordSprite" type="Sprite2D" parent="PlayerBody/PlayerSword/Sword"]
+[node name="SwordSprite" type="Sprite2D" parent="PlayerSword/Sword"]
 position = Vector2(11, 7)
 rotation = -0.785398
 scale = Vector2(0.06, 0.06)
 texture = ExtResource("4_rji4c")
 offset = Vector2(150, -150)
 
-[node name="HandSprite" type="Sprite2D" parent="PlayerBody/PlayerSword/Sword"]
+[node name="HandSprite" type="Sprite2D" parent="PlayerSword/Sword"]
 position = Vector2(11, 5.00004)
 texture = ExtResource("7_dvd1y")
 hframes = 2
 vframes = 4
 frame = 7
 
-[node name="SwordAnimationPlayer" type="AnimationPlayer" parent="PlayerBody/PlayerSword"]
+[node name="SwordAnimationPlayer" type="AnimationPlayer" parent="PlayerSword"]
 root_node = NodePath("../../..")
 libraries = {
 "": SubResource("AnimationLibrary_xntoa")
 }
 
-[node name="SlashSprite" type="Sprite2D" parent="PlayerBody/PlayerSword"]
+[node name="SlashSprite" type="Sprite2D" parent="PlayerSword"]
 visible = false
 position = Vector2(32, 2)
 scale = Vector2(1.9, 1.9)
 texture = ExtResource("5_252ed")
 hframes = 3
 
-[node name="PlayerSprite" type="AnimatedSprite2D" parent="PlayerBody"]
+[node name="PlayerCollision" type="CollisionShape2D" parent="."]
+position = Vector2(1, 8)
+shape = SubResource("CircleShape2D_dikwq")
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2o88b")
 animation = &"run"
 autoplay = "idle"
 
-[node name="PlayerCamera" type="Camera2D" parent="PlayerBody"]
+[node name="PlayerCamera" type="Camera2D" parent="."]
 
-[node name="PlayerLight" type="PointLight2D" parent="PlayerBody"]
-energy = 0.5
-shadow_enabled = true
-shadow_filter = 1
-texture = ExtResource("4_w500s")
-texture_scale = 0.5
-
-[node name="PlayerShadow" type="PointLight2D" parent="PlayerBody"]
+[node name="PlayerShadow" type="PointLight2D" parent="."]
 position = Vector2(-0.5, 16)
 scale = Vector2(0.390625, 0.25)
 energy = 0.7
 blend_mode = 1
 texture = SubResource("GradientTexture2D_heaci")
+
+[node name="LightFairy" type="Node2D" parent="."]
+position = Vector2(-17, 1)
+scale = Vector2(0.5, 0.5)
+
+[node name="LightFairySprite" type="AnimatedSprite2D" parent="LightFairy"]
+position = Vector2(0, 1)
+sprite_frames = SubResource("SpriteFrames_0dbd7")
+autoplay = "default"
+frame_progress = 0.447217
+
+[node name="PlayerLight" type="PointLight2D" parent="LightFairy"]
+position = Vector2(0, -26)
+scale = Vector2(2, 2)
+color = Color(1, 0, 1, 1)
+energy = 0.5
+shadow_enabled = true
+shadow_filter = 1
+texture = ExtResource("4_w500s")
+texture_scale = 0.5
