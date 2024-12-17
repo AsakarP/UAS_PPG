@@ -15,6 +15,12 @@ func _physics_process(delta):
 		animated_sprite.flip_h = true
 		
 	print (velocity)
+	
+	if velocity != Vector2.ZERO:
+		animated_sprite.play("run")
+	else:
+		animated_sprite.play("idle")
+		
 	move_and_slide()
 	
 func makePath():

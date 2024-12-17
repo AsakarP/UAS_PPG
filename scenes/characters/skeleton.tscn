@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ccvacaspcraap"]
+[gd_scene load_steps=18 format=3 uid="uid://ccvacaspcraap"]
 
 [ext_resource type="Script" path="res://scenes/characters/skeleton_body.gd" id="1_qva60"]
 [ext_resource type="Texture2D" uid="uid://pc2dryqghdbx" path="res://sprites/Pixel Crawler/Enemy/Skeleton Crew/Skeleton - Base/Idle/Idle-Sheet.png" id="1_tfskf"]
@@ -87,6 +87,15 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_qmvlr"]
+offsets = PackedFloat32Array(0, 0.733766)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vy0hd"]
+gradient = SubResource("Gradient_qmvlr")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_7mgua"]
 
 [node name="SkeletonBody" type="CharacterBody2D"]
@@ -96,12 +105,18 @@ script = ExtResource("1_qva60")
 sprite_frames = SubResource("SpriteFrames_vccc8")
 autoplay = "default"
 
+[node name="SkeleShadow" type="PointLight2D" parent="."]
+position = Vector2(-0.5, 16)
+scale = Vector2(0.390625, 0.25)
+energy = 0.3
+blend_mode = 1
+texture = SubResource("GradientTexture2D_vy0hd")
+
 [node name="SkeletonCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 7)
 shape = SubResource("CircleShape2D_7mgua")
 
 [node name="SkeletonNavigation" type="NavigationAgent2D" parent="."]
-debug_enabled = true
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1

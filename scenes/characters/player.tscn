@@ -204,12 +204,12 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Gradient" id="Gradient_qmvlr"]
+[sub_resource type="Gradient" id="Gradient_n0xrb"]
 offsets = PackedFloat32Array(0, 0.733766)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_heaci"]
-gradient = SubResource("Gradient_qmvlr")
+gradient = SubResource("Gradient_n0xrb")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
@@ -321,7 +321,7 @@ autoplay = "idle"
 [node name="PlayerShadow" type="PointLight2D" parent="."]
 position = Vector2(-0.5, 16)
 scale = Vector2(0.390625, 0.25)
-energy = 0.7
+energy = 0.5
 blend_mode = 1
 texture = SubResource("GradientTexture2D_heaci")
 
