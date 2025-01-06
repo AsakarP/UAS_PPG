@@ -1,6 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://ccvacaspcraap"]
+[gd_scene load_steps=19 format=3 uid="uid://ccvacaspcraap"]
 
-[ext_resource type="Script" path="res://scenes/characters/skeleton_body.gd" id="1_qva60"]
+[ext_resource type="Script" path="res://scripts/skeleton_body.gd" id="1_qva60"]
 [ext_resource type="Texture2D" uid="uid://pc2dryqghdbx" path="res://sprites/Pixel Crawler/Enemy/Skeleton Crew/Skeleton - Base/Idle/Idle-Sheet.png" id="1_tfskf"]
 [ext_resource type="Texture2D" uid="uid://elq3id8m2p00" path="res://sprites/Pixel Crawler/Enemy/Skeleton Crew/Skeleton - Base/Run/Run-Sheet.png" id="2_g07qy"]
 
@@ -98,6 +98,9 @@ fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7mgua"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_eno2g"]
+radius = 19.0
+
 [node name="SkeletonBody" type="CharacterBody2D"]
 script = ExtResource("1_qva60")
 
@@ -122,4 +125,15 @@ shape = SubResource("CircleShape2D_7mgua")
 wait_time = 0.1
 autostart = true
 
+[node name="Skele_hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Skele_hitbox"]
+shape = SubResource("CircleShape2D_eno2g")
+
+[node name="take_dmg_cooldown" type="Timer" parent="."]
+wait_time = 0.5
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Skele_hitbox" to="." method="_on_skele_hitbox_body_entered"]
+[connection signal="body_exited" from="Skele_hitbox" to="." method="_on_skele_hitbox_body_exited"]
+[connection signal="timeout" from="take_dmg_cooldown" to="." method="_on_take_dmg_cooldown_timeout"]
