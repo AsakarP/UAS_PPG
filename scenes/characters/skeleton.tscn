@@ -133,6 +133,14 @@ shape = SubResource("CircleShape2D_eno2g")
 [node name="take_dmg_cooldown" type="Timer" parent="."]
 wait_time = 0.5
 
+[node name="Enemyhealthbar" type="ProgressBar" parent="."]
+modulate = Color(1, 0, 0, 1)
+offset_left = -11.0
+offset_top = 20.0
+offset_right = 12.0
+offset_bottom = 26.0
+show_percentage = false
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Skele_hitbox" to="." method="_on_skele_hitbox_body_entered"]
 [connection signal="body_exited" from="Skele_hitbox" to="." method="_on_skele_hitbox_body_exited"]

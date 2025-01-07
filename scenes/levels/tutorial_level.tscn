@@ -1,12 +1,12 @@
-[gd_scene load_steps=35 format=4 uid="uid://cu4s7jckyysvh"]
+[gd_scene load_steps=36 format=4 uid="uid://cls067l7dbony"]
 
-[ext_resource type="Script" path="res://scenes/levels/game_level.gd" id="1_3lxau"]
-[ext_resource type="Texture2D" uid="uid://2yckemn7ki6q" path="res://sprites/Pixel Crawler/Environment/Dungeon Prison/Assets/Tiles.png" id="1_e27ej"]
-[ext_resource type="PackedScene" uid="uid://c0byy1eageio8" path="res://scenes/characters/player.tscn" id="1_ellcj"]
-[ext_resource type="Texture2D" uid="uid://b72os2rsydpw1" path="res://sprites/Pixel Crawler/Environment/Dungeon Prison/Assets/Props.png" id="2_3ybcc"]
-[ext_resource type="Texture2D" uid="uid://ddh8ym4754yfl" path="res://sprites/void.png" id="3_50t8a"]
-[ext_resource type="PackedScene" uid="uid://brsvgdpelwdco" path="res://scenes/props/torch.tscn" id="6_5tp17"]
-[ext_resource type="PackedScene" uid="uid://ccvacaspcraap" path="res://scenes/characters/skeleton.tscn" id="6_wydjx"]
+[ext_resource type="Script" path="res://scenes/levels/game_level.gd" id="1_hjxea"]
+[ext_resource type="Texture2D" uid="uid://2yckemn7ki6q" path="res://sprites/Pixel Crawler/Environment/Dungeon Prison/Assets/Tiles.png" id="2_8efxn"]
+[ext_resource type="Texture2D" uid="uid://ddh8ym4754yfl" path="res://sprites/void.png" id="3_xkfag"]
+[ext_resource type="Texture2D" uid="uid://b72os2rsydpw1" path="res://sprites/Pixel Crawler/Environment/Dungeon Prison/Assets/Props.png" id="4_8jj0y"]
+[ext_resource type="PackedScene" uid="uid://brsvgdpelwdco" path="res://scenes/props/torch.tscn" id="5_4yco1"]
+[ext_resource type="PackedScene" uid="uid://ccvacaspcraap" path="res://scenes/characters/skeleton.tscn" id="6_6drby"]
+[ext_resource type="PackedScene" uid="uid://c0byy1eageio8" path="res://scenes/characters/player.tscn" id="7_bvii5"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_cs1ya"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -21,7 +21,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8
 agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dcjkf"]
-texture = ExtResource("1_e27ej")
+texture = ExtResource("2_8efxn")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -376,7 +376,7 @@ polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3q27v"]
-texture = ExtResource("1_e27ej")
+texture = ExtResource("2_8efxn")
 0:0/0 = 0
 0:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_0uy1r")
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -713,7 +713,7 @@ texture = ExtResource("1_e27ej")
 8:21/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_026n4"]
-texture = ExtResource("3_50t8a")
+texture = ExtResource("3_xkfag")
 0:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_1buci"]
@@ -745,7 +745,7 @@ polygon = PackedVector2Array(-2.25, 4, 2.125, 4, 3.875, 8, -4.125, 8)
 polygon = PackedVector2Array(-4, -8, 4, -8, 4.125, 6.75, -4.125, 6.875)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qaraw"]
-texture = ExtResource("2_3ybcc")
+texture = ExtResource("4_8jj0y")
 0:0/0 = 0
 0:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_6f0bd")
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 1, 8, 0.875, 8, 8, -8, 8)
@@ -960,8 +960,13 @@ occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_qaraw")
 
+[sub_resource type="LabelSettings" id="LabelSettings_wm2l8"]
+font_size = 12
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
 [node name="GameLevel" type="Node2D"]
-script = ExtResource("1_3lxau")
+script = ExtResource("1_hjxea")
 
 [node name="Darkness" type="DirectionalLight2D" parent="."]
 energy = 0.5
@@ -981,21 +986,41 @@ tile_set = SubResource("TileSet_8jn1g")
 
 [node name="Torches" type="Node2D" parent="."]
 
-[node name="torch" parent="Torches" instance=ExtResource("6_5tp17")]
+[node name="torch" parent="Torches" instance=ExtResource("5_4yco1")]
 position = Vector2(-264, -178)
 
-[node name="torch2" parent="Torches" instance=ExtResource("6_5tp17")]
+[node name="torch2" parent="Torches" instance=ExtResource("5_4yco1")]
 position = Vector2(-104, -184)
 
-[node name="torch3" parent="Torches" instance=ExtResource("6_5tp17")]
+[node name="torch3" parent="Torches" instance=ExtResource("5_4yco1")]
 position = Vector2(98, -184)
 
-[node name="torch4" parent="Torches" instance=ExtResource("6_5tp17")]
+[node name="torch4" parent="Torches" instance=ExtResource("5_4yco1")]
 position = Vector2(264, -178)
 
-[node name="SkeletonBody" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_wydjx")]
+[node name="SkeletonBody" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_6drby")]
 position = Vector2(1, -154)
 player = NodePath("../PlayerBody")
 
-[node name="PlayerBody" parent="." instance=ExtResource("1_ellcj")]
+[node name="PlayerBody" parent="." instance=ExtResource("7_bvii5")]
 position = Vector2(0, -3)
+
+[node name="Labels" type="Node2D" parent="."]
+
+[node name="Label" type="Label" parent="Labels"]
+top_level = true
+offset_left = -189.0
+offset_top = -98.0
+offset_right = -24.0
+offset_bottom = -81.0
+text = "Press WASD to move around"
+label_settings = SubResource("LabelSettings_wm2l8")
+
+[node name="Label2" type="Label" parent="Labels"]
+top_level = true
+offset_left = 46.0
+offset_top = 72.0
+offset_right = 189.0
+offset_bottom = 89.0
+text = "Press Left Click to Attack"
+label_settings = SubResource("LabelSettings_wm2l8")

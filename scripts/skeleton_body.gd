@@ -32,6 +32,8 @@ func _physics_process(delta):
 	# Combat
 	deal_dmg()
 	
+	health_system()
+	
 func makePath():
 	if go_to_player == true:
 		SkeleNav.target_position = player.global_position
@@ -64,6 +66,14 @@ func deal_dmg():
 			if health <= 0:
 				self.queue_free()
 
-
 func _on_take_dmg_cooldown_timeout():
 	can_take_dmg = true
+	
+func health_system():
+	var healthbar = $Enemyhealthbar
+	healthbar.value = health
+	
+	if health >= 100:
+		healthbar.visible = false
+	else:
+		healthbar.visible = true

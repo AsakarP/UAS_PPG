@@ -54,6 +54,7 @@ func _physics_process(delta):
 	# Combat system
 	enemy_atk()
 	atk()
+	health_system()
 	
 	if health <= 0:
 		player_alive = false # Kembali ke menu / Respawn
@@ -103,3 +104,12 @@ func _on_sword_hitbox_body_exited(body):
 	if body.has_method("enemy"):
 		print("Sword End")
 		attack = false
+		
+func health_system():
+	var healthbar = $Healthbar
+	healthbar.value = health
+	
+	#if health >= 100:
+		#healthbar.visible = false
+	#else:
+		#healthbar.visible = true
