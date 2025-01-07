@@ -13,9 +13,9 @@ script = ExtResource("1_ytocx")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_left = 89.0
+offset_left = 91.0
 offset_top = 70.0
-offset_right = 228.0
+offset_right = 230.0
 offset_bottom = 171.0
 scale = Vector2(1.00419, 1)
 
@@ -23,14 +23,17 @@ scale = Vector2(1.00419, 1)
 layout_mode = 2
 
 [node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
+modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 text = "Play"
 
 [node name="Tutorial" type="Button" parent="MarginContainer/VBoxContainer"]
+modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 text = "Tutorial"
 
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 text = "Quit"
 
