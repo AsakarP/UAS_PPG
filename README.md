@@ -2,7 +2,7 @@
 
 Pembuatan Game Menggunakan Godot.
 
-Nama Game: -
+Nama Game: Fortress of Shadow
 
 Nama Kelompok:
 
