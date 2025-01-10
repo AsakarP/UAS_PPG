@@ -1,12 +1,15 @@
-[gd_scene load_steps=36 format=4 uid="uid://cls067l7dbony"]
+[gd_scene load_steps=40 format=4 uid="uid://cls067l7dbony"]
 
-[ext_resource type="Script" path="res://scenes/levels/game_level.gd" id="1_hjxea"]
+[ext_resource type="Script" path="res://scenes/levels/tutorial_level.gd" id="1_au1wf"]
 [ext_resource type="Texture2D" uid="uid://2yckemn7ki6q" path="res://sprites/Pixel Crawler/Environment/Dungeon Prison/Assets/Tiles.png" id="2_8efxn"]
 [ext_resource type="Texture2D" uid="uid://ddh8ym4754yfl" path="res://sprites/void.png" id="3_xkfag"]
 [ext_resource type="Texture2D" uid="uid://b72os2rsydpw1" path="res://sprites/Pixel Crawler/Environment/Dungeon Prison/Assets/Props.png" id="4_8jj0y"]
 [ext_resource type="PackedScene" uid="uid://brsvgdpelwdco" path="res://scenes/props/torch.tscn" id="5_4yco1"]
-[ext_resource type="PackedScene" uid="uid://ccvacaspcraap" path="res://scenes/characters/skeleton.tscn" id="6_6drby"]
+[ext_resource type="PackedScene" uid="uid://ccvacaspcraap" path="res://scenes/enemy/skeleton.tscn" id="6_6drby"]
 [ext_resource type="PackedScene" uid="uid://c0byy1eageio8" path="res://scenes/characters/player.tscn" id="7_bvii5"]
+[ext_resource type="Script" path="res://scripts/player_body_tutorial.gd" id="8_rv2h2"]
+[ext_resource type="Texture2D" uid="uid://dnk4uirte5f4k" path="res://img/wasd.png" id="8_s08vf"]
+[ext_resource type="Texture2D" uid="uid://qbjfhjndwxp7" path="res://img/mouse.png" id="9_aaspb"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_cs1ya"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -962,11 +965,13 @@ sources/0 = SubResource("TileSetAtlasSource_qaraw")
 
 [sub_resource type="LabelSettings" id="LabelSettings_wm2l8"]
 font_size = 12
-outline_size = 10
+outline_size = 7
 outline_color = Color(0, 0, 0, 1)
 
-[node name="GameLevel" type="Node2D"]
-script = ExtResource("1_hjxea")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1f0gc"]
+
+[node name="TutorialLevel" type="Node2D"]
+script = ExtResource("1_au1wf")
 
 [node name="Darkness" type="DirectionalLight2D" parent="."]
 energy = 0.5
@@ -1004,23 +1009,60 @@ player = NodePath("../PlayerBody")
 
 [node name="PlayerBody" parent="." instance=ExtResource("7_bvii5")]
 position = Vector2(0, -3)
+script = ExtResource("8_rv2h2")
 
-[node name="Labels" type="Node2D" parent="."]
+[node name="Labels" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
 
 [node name="Label" type="Label" parent="Labels"]
 top_level = true
+layout_mode = 0
 offset_left = -189.0
 offset_top = -98.0
 offset_right = -24.0
 offset_bottom = -81.0
-text = "Press WASD to move around"
+text = "Press                       to move around"
 label_settings = SubResource("LabelSettings_wm2l8")
 
 [node name="Label2" type="Label" parent="Labels"]
 top_level = true
+layout_mode = 0
 offset_left = 46.0
 offset_top = 72.0
 offset_right = 189.0
 offset_bottom = 89.0
-text = "Press Left Click to Attack"
+text = "Press            to Attack"
 label_settings = SubResource("LabelSettings_wm2l8")
+
+[node name="images" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="wasd" type="TextureRect" parent="images"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = -163.0
+offset_top = -140.0
+offset_right = -81.0
+offset_bottom = -52.0
+texture = ExtResource("8_s08vf")
+expand_mode = 1
+
+[node name="mouse" type="TextureRect" parent="images"]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 59.0
+offset_right = 118.0
+offset_bottom = 99.0
+texture = ExtResource("9_aaspb")
+expand_mode = 1
+
+[node name="Exit" type="Area2D" parent="."]
+
+[node name="ExitShape" type="CollisionShape2D" parent="Exit"]
+position = Vector2(0, -183)
+shape = SubResource("RectangleShape2D_1f0gc")
+
+[connection signal="body_entered" from="Exit" to="." method="_on_exit_body_entered"]

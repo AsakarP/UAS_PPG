@@ -1,12 +1,12 @@
 [gd_scene load_steps=35 format=4 uid="uid://cu4s7jckyysvh"]
 
-[ext_resource type="Script" path="res://scenes/levels/game_level.gd" id="1_3lxau"]
+[ext_resource type="Script" path="res://scripts/game_level.gd" id="1_3lxau"]
 [ext_resource type="Texture2D" uid="uid://2yckemn7ki6q" path="res://sprites/Pixel Crawler/Environment/Dungeon Prison/Assets/Tiles.png" id="1_e27ej"]
 [ext_resource type="PackedScene" uid="uid://c0byy1eageio8" path="res://scenes/characters/player.tscn" id="1_ellcj"]
 [ext_resource type="Texture2D" uid="uid://b72os2rsydpw1" path="res://sprites/Pixel Crawler/Environment/Dungeon Prison/Assets/Props.png" id="2_3ybcc"]
 [ext_resource type="Texture2D" uid="uid://ddh8ym4754yfl" path="res://sprites/void.png" id="3_50t8a"]
 [ext_resource type="PackedScene" uid="uid://brsvgdpelwdco" path="res://scenes/props/torch.tscn" id="6_5tp17"]
-[ext_resource type="PackedScene" uid="uid://ccvacaspcraap" path="res://scenes/characters/skeleton.tscn" id="6_wydjx"]
+[ext_resource type="PackedScene" uid="uid://ccvacaspcraap" path="res://scenes/enemy/skeleton.tscn" id="6_wydjx"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_cs1ya"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)

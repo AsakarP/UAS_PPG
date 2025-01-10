@@ -60,7 +60,7 @@ func _physics_process(delta):
 		player_alive = false # Kembali ke menu / Respawn
 		health = 0
 		print("Player Killed")
-		get_tree().change_scene_to_file("res://scenes/ui/retry.tscn")
+		get_tree().change_scene_to_file("res://scenes/ui/retryTutorial.tscn")
 
 func player():
 	pass
