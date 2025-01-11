@@ -1,6 +1,6 @@
 [gd_scene load_steps=40 format=4 uid="uid://cls067l7dbony"]
 
-[ext_resource type="Script" path="res://scenes/levels/tutorial_level.gd" id="1_au1wf"]
+[ext_resource type="Script" path="res://scripts/tutorial_level.gd" id="1_au1wf"]
 [ext_resource type="Texture2D" uid="uid://2yckemn7ki6q" path="res://sprites/Pixel Crawler/Environment/Dungeon Prison/Assets/Tiles.png" id="2_8efxn"]
 [ext_resource type="Texture2D" uid="uid://ddh8ym4754yfl" path="res://sprites/void.png" id="3_xkfag"]
 [ext_resource type="Texture2D" uid="uid://b72os2rsydpw1" path="res://sprites/Pixel Crawler/Environment/Dungeon Prison/Assets/Props.png" id="4_8jj0y"]
