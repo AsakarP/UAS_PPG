@@ -103,7 +103,7 @@ func _on_player_hitbox_body_exited(body):
 func _on_sword_hitbox_body_entered(body):
 	if body.has_method("enemy"):
 		if attack == true:
-			body.damage(100)
+			body.damage(20)
 			atk_in_progress = true
 			$deal_atk.start()
 

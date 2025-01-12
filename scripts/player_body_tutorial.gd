@@ -2,9 +2,10 @@ extends CharacterBody2D
 
 # Player
 # Player Variables
-@onready var animated_sprite = $PlayerSprite
+@onready var animated_sprite = $Node2D/PlayerSprite
 @onready var sword: Node2D = get_node("PlayerSword")
 @onready var sword_animation_player : AnimationPlayer = sword.get_node("SwordAnimationPlayer")
+@onready var hurt = $Hurt
 var SPEED = 60
 var enemies_in_atk_range = []
 var enemy_atk_cooldown = true
@@ -70,6 +71,7 @@ func enemy_atk():
 	if enemies_in_atk_range.size() > 0 and enemy_atk_cooldown:
 		for enemy in enemies_in_atk_range:
 			health -= 5
+			hurt.play("damaged")
 		enemy_atk_cooldown = false
 		$Atk_cooldown.start()
 # enemy attack cooldown
