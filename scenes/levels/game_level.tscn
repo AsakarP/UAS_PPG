@@ -993,9 +993,6 @@ position = Vector2(98, -184)
 [node name="torch4" parent="Torches" instance=ExtResource("6_5tp17")]
 position = Vector2(264, -178)
 
-[node name="PlayerBody" parent="." instance=ExtResource("1_ellcj")]
-position = Vector2(0, -3)
-
 [node name="Skeletons" type="Node2D" parent="."]
 
 [node name="SkeletonBody" parent="Skeletons" node_paths=PackedStringArray("player") instance=ExtResource("6_wydjx")]
@@ -1009,3 +1006,6 @@ player = NodePath("../../PlayerBody")
 [node name="SkeletonBody3" parent="Skeletons" node_paths=PackedStringArray("player") instance=ExtResource("6_wydjx")]
 position = Vector2(-79, -113)
 player = NodePath("../../PlayerBody")
+
+[node name="PlayerBody" parent="." instance=ExtResource("1_ellcj")]
+position = Vector2(0, -3)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ccvacaspcraap"]
+[gd_scene load_steps=22 format=3 uid="uid://ccvacaspcraap"]
 
 [ext_resource type="Script" path="res://scripts/skeleton_body.gd" id="1_qva60"]
 [ext_resource type="Texture2D" uid="uid://pc2dryqghdbx" path="res://sprites/Pixel Crawler/Enemy/Skeleton Crew/Skeleton - Base/Idle/Idle-Sheet.png" id="1_tfskf"]
@@ -60,7 +60,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_2xy6k")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
 "speed": 5.0
 }, {
 "frames": [{
@@ -87,6 +87,42 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_p0836"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_d2kmm"]
+resource_name = "damaged"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hcd1t"]
+_data = {
+"RESET": SubResource("Animation_p0836"),
+"damaged": SubResource("Animation_d2kmm")
+}
+
 [sub_resource type="Gradient" id="Gradient_qmvlr"]
 offsets = PackedFloat32Array(0, 0.733766)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -104,9 +140,18 @@ radius = 19.0
 [node name="SkeletonBody" type="CharacterBody2D"]
 script = ExtResource("1_qva60")
 
-[node name="SkeletonSprite" type="AnimatedSprite2D" parent="."]
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="SkeletonSprite" type="AnimatedSprite2D" parent="Node2D"]
 sprite_frames = SubResource("SpriteFrames_vccc8")
-autoplay = "default"
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.802119
+
+[node name="damage_highlight" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hcd1t")
+}
 
 [node name="SkeleShadow" type="PointLight2D" parent="."]
 position = Vector2(-0.5, 16)

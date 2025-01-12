@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+# Transition Screen
 signal on_transition_finished
 
 @onready var colorRect = $ColorRect

@@ -1,10 +1,12 @@
 extends CharacterBody2D
 
+# Player
 # Player Variables
-@onready var animated_sprite = $PlayerSprite
+@onready var animated_sprite = $Node2D/PlayerSprite
 @onready var sword: Node2D = get_node("PlayerSword")
 @onready var sword_animation_player : AnimationPlayer = sword.get_node("SwordAnimationPlayer")
-var SPEED = 150
+@onready var hurt = $Hurt
+var SPEED = 60
 var enemies_in_atk_range = []
 var enemy_atk_cooldown = true
 var health = 100
@@ -47,7 +49,7 @@ func _physics_process(delta):
 		animated_sprite.play("idle")
 	
 	# Movement
-	move_and_slide()
+	move_and_collide(velocity * delta)
 	
 	# Combat system
 	enemy_atk()
@@ -58,7 +60,6 @@ func _physics_process(delta):
 	if health <= 0:
 		player_alive = false
 		health = 0
-		print("Player Killed")
 		get_tree().change_scene_to_file("res://scenes/ui/retry.tscn")
 
 # Is a player
@@ -70,9 +71,9 @@ func enemy_atk():
 	if enemies_in_atk_range.size() > 0 and enemy_atk_cooldown:
 		for enemy in enemies_in_atk_range:
 			health -= 5
+			hurt.play("damaged")
 		enemy_atk_cooldown = false
 		$Atk_cooldown.start()
-		print("Player HP:", health)
 # enemy attack cooldown
 func _on_atk_cooldown_timeout():
 	enemy_atk_cooldown = true

@@ -1,10 +1,11 @@
 extends CharacterBody2D
 
+# Player
 # Player Variables
 @onready var animated_sprite = $PlayerSprite
 @onready var sword: Node2D = get_node("PlayerSword")
 @onready var sword_animation_player : AnimationPlayer = sword.get_node("SwordAnimationPlayer")
-var SPEED = 150
+var SPEED = 60
 var enemies_in_atk_range = []
 var enemy_atk_cooldown = true
 var health = 100
@@ -47,7 +48,7 @@ func _physics_process(delta):
 		animated_sprite.play("idle")
 	
 	# Movement
-	move_and_slide()
+	move_and_collide(velocity * delta)
 	
 	# Combat system
 	enemy_atk()
@@ -58,7 +59,6 @@ func _physics_process(delta):
 	if health <= 0:
 		player_alive = false
 		health = 0
-		print("Player Killed")
 		get_tree().change_scene_to_file("res://scenes/ui/retryTutorial.tscn")
 
 # Is a player
@@ -72,7 +72,6 @@ func enemy_atk():
 			health -= 5
 		enemy_atk_cooldown = false
 		$Atk_cooldown.start()
-		print("Player HP:", health)
 # enemy attack cooldown
 func _on_atk_cooldown_timeout():
 	enemy_atk_cooldown = true
@@ -85,7 +84,6 @@ func atk():
 # Attack timeout
 func _on_deal_atk_timeout():
 	$deal_atk.stop()
-	Global.player_curr_atk = false
 	atk_in_progress = false
 	attack = false
 
@@ -103,7 +101,7 @@ func _on_player_hitbox_body_exited(body):
 func _on_sword_hitbox_body_entered(body):
 	if body.has_method("enemy"):
 		if attack == true:
-			Global.player_curr_atk = true
+			body.damage(20)
 			atk_in_progress = true
 			$deal_atk.start()
 

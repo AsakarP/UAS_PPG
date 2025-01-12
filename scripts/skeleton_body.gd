@@ -1,11 +1,14 @@
 extends CharacterBody2D
 
+# Enemy Skeleton
+# Skeleton variables
 var SPEED = 50
 var stop_range = 20
 @export var player: Node2D
-@onready var animated_sprite = $SkeletonSprite
+@onready var animated_sprite = $Node2D/SkeletonSprite
 @onready var SkeleNav = $SkeletonNavigation
 var can_take_dmg = true
+@onready var dmgHighlight = $damage_highlight
 
 # Combat variables
 var health = 100
@@ -30,15 +33,17 @@ func _physics_process(delta):
 	elif velocity.x < 0:
 		animated_sprite.flip_h = true
 	
+	# Movement
+	var collision = move_and_collide(velocity * delta)
+	if collision and collision.get_collider().has_method("player"):
+		velocity = Vector2.ZERO
+	
 	# Animation
 	if velocity != Vector2.ZERO:
 		animated_sprite.play("run")
 	else:
 		animated_sprite.play("idle")
-	
-	# Movement
-	move_and_slide()
-	
+		
 	# Combat
 	health_system()
 
@@ -72,9 +77,10 @@ func _on_skele_hitbox_body_exited(body):
 func damage(amount):
 	if can_take_dmg == true:
 		health -= amount
+		dmgHighlight.play("damaged")
 		$take_dmg_cooldown.start()
 		can_take_dmg = false
-		#print("Skeleton HP:", health)
+		# Skeleton died
 		if health <= 0:
 			queue_free()
 
