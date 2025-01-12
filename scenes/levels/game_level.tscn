@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://cu4s7jckyysvh"]
+[gd_scene load_steps=42 format=4 uid="uid://cu4s7jckyysvh"]
 
 [ext_resource type="Script" path="res://scripts/game_level.gd" id="1_3lxau"]
 [ext_resource type="Texture2D" uid="uid://2yckemn7ki6q" path="res://sprites/Pixel Crawler/Environment/Dungeon Prison/Assets/Tiles.png" id="1_e27ej"]
@@ -960,6 +960,54 @@ occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_qaraw")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qktha"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mcs1m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p7s18"]
+size = Vector2(20, 4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_n8ofa"]
+font_size = 30
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_r2ftr"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Location:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jpdgg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Location:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qfykf"]
+_data = {
+"RESET": SubResource("Animation_jpdgg"),
+"fade_out": SubResource("Animation_r2ftr")
+}
+
 [node name="GameLevel" type="Node2D"]
 script = ExtResource("1_3lxau")
 
@@ -1008,4 +1056,41 @@ position = Vector2(-79, -113)
 player = NodePath("../../PlayerBody")
 
 [node name="PlayerBody" parent="." instance=ExtResource("1_ellcj")]
-position = Vector2(0, -3)
+position = Vector2(-1, 118)
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Next" type="Area2D" parent="Node2D"]
+position = Vector2(0, -181)
+collision_mask = 2
+
+[node name="NextShape" type="CollisionShape2D" parent="Node2D/Next"]
+shape = SubResource("RectangleShape2D_qktha")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D"]
+position = Vector2(0, 25)
+collision_mask = 2
+physics_material_override = SubResource("PhysicsMaterial_mcs1m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
+position = Vector2(0, -193)
+shape = SubResource("RectangleShape2D_p7s18")
+
+[node name="Location" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+top_level = true
+offset_left = -101.0
+offset_top = 43.0
+offset_right = 92.0
+offset_bottom = 85.0
+text = "The Dungeon"
+label_settings = SubResource("LabelSettings_n8ofa")
+
+[node name="Location_fade_out" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qfykf")
+}
+autoplay = "fade_out"
+speed_scale = 0.3
+
+[connection signal="body_entered" from="Node2D/Next" to="." method="_on_next_body_entered"]

@@ -7,8 +7,10 @@ var stop_range = 20
 @export var player: Node2D
 @onready var animated_sprite = $Node2D/SkeletonSprite
 @onready var SkeleNav = $SkeletonNavigation
-var can_take_dmg = true
 @onready var dmgHighlight = $damage_highlight
+var can_take_dmg = true
+
+signal enemy_died
 
 # Combat variables
 var health = 100
@@ -82,6 +84,7 @@ func damage(amount):
 		can_take_dmg = false
 		# Skeleton died
 		if health <= 0:
+			emit_signal("enemy_died")
 			queue_free()
 
 # Dmg Cooldown
