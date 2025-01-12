@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=4 uid="uid://cu4s7jckyysvh"]
+[gd_scene load_steps=43 format=4 uid="uid://cu4s7jckyysvh"]
 
 [ext_resource type="Script" path="res://scripts/game_level.gd" id="1_3lxau"]
 [ext_resource type="Texture2D" uid="uid://2yckemn7ki6q" path="res://sprites/Pixel Crawler/Environment/Dungeon Prison/Assets/Tiles.png" id="1_e27ej"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ddh8ym4754yfl" path="res://sprites/void.png" id="3_50t8a"]
 [ext_resource type="PackedScene" uid="uid://brsvgdpelwdco" path="res://scenes/props/torch.tscn" id="6_5tp17"]
 [ext_resource type="PackedScene" uid="uid://ccvacaspcraap" path="res://scenes/enemy/skeleton.tscn" id="6_wydjx"]
+[ext_resource type="PackedScene" uid="uid://bj8rsiwi5lxot" path="res://scenes/props/heart.tscn" id="8_ldtfc"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_cs1ya"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -972,21 +973,6 @@ font_size = 30
 outline_size = 7
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="Animation" id="Animation_r2ftr"]
-resource_name = "fade_out"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Location:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_jpdgg"]
 length = 0.001
 tracks/0/type = "value"
@@ -1000,6 +986,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_r2ftr"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Location:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qfykf"]
@@ -1041,6 +1042,28 @@ position = Vector2(98, -184)
 [node name="torch4" parent="Torches" instance=ExtResource("6_5tp17")]
 position = Vector2(264, -178)
 
+[node name="Exit" type="Node2D" parent="."]
+
+[node name="Next" type="Area2D" parent="Exit"]
+position = Vector2(0, -181)
+collision_mask = 2
+
+[node name="NextShape" type="CollisionShape2D" parent="Exit/Next"]
+shape = SubResource("RectangleShape2D_qktha")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Exit"]
+position = Vector2(0, 25)
+collision_mask = 2
+physics_material_override = SubResource("PhysicsMaterial_mcs1m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exit/StaticBody2D"]
+position = Vector2(0, -193)
+shape = SubResource("RectangleShape2D_p7s18")
+
+[node name="Healing" type="Node2D" parent="."]
+
+[node name="Heart" parent="Healing" instance=ExtResource("8_ldtfc")]
+
 [node name="Skeletons" type="Node2D" parent="."]
 
 [node name="SkeletonBody" parent="Skeletons" node_paths=PackedStringArray("player") instance=ExtResource("6_wydjx")]
@@ -1057,24 +1080,6 @@ player = NodePath("../../PlayerBody")
 
 [node name="PlayerBody" parent="." instance=ExtResource("1_ellcj")]
 position = Vector2(-1, 118)
-
-[node name="Node2D" type="Node2D" parent="."]
-
-[node name="Next" type="Area2D" parent="Node2D"]
-position = Vector2(0, -181)
-collision_mask = 2
-
-[node name="NextShape" type="CollisionShape2D" parent="Node2D/Next"]
-shape = SubResource("RectangleShape2D_qktha")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Node2D"]
-position = Vector2(0, 25)
-collision_mask = 2
-physics_material_override = SubResource("PhysicsMaterial_mcs1m")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
-position = Vector2(0, -193)
-shape = SubResource("RectangleShape2D_p7s18")
 
 [node name="Location" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -1093,4 +1098,4 @@ libraries = {
 autoplay = "fade_out"
 speed_scale = 0.3
 
-[connection signal="body_entered" from="Node2D/Next" to="." method="_on_next_body_entered"]
+[connection signal="body_entered" from="Exit/Next" to="." method="_on_next_body_entered"]

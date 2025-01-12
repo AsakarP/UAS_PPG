@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=3 uid="uid://bj8rsiwi5lxot"]
+
+[ext_resource type="Script" path="res://heart.gd" id="1_83x43"]
+[ext_resource type="Texture2D" uid="uid://ohh052cln5xc" path="res://sprites/cosmetics/Heart.png" id="1_cp307"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_waiua"]
+atlas = ExtResource("1_cp307")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7scya"]
+atlas = ExtResource("1_cp307")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yiofc"]
+atlas = ExtResource("1_cp307")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hib12"]
+atlas = ExtResource("1_cp307")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2j4jq"]
+atlas = ExtResource("1_cp307")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a3wo1"]
+atlas = ExtResource("1_cp307")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ihx2v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_waiua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7scya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yiofc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hib12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2j4jq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a3wo1")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m18sr"]
+radius = 8.0
+
+[node name="Heart" type="Node2D"]
+script = ExtResource("1_83x43")
+
+[node name="HeartSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ihx2v")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.461568
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_m18sr")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

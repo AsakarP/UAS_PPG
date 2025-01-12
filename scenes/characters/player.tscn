@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://co14tgrxutrb6" path="res://sprites/effects (new)/slash_effect_anim_spritesheet.png" id="5_252ed"]
 [ext_resource type="Texture2D" uid="uid://cms4ypximlrxr" path="res://sprites/Pixel Crawler/Weapons/Hands/Hands.png" id="7_dvd1y"]
 [ext_resource type="Texture2D" uid="uid://bubuy5envswj5" path="res://sprites/cosmetics/fairyPink.png" id="7_xljmh"]
-[ext_resource type="Script" path="res://fairy_animation.gd" id="9_i1i3d"]
+[ext_resource type="Script" path="res://scripts/fairy_animation.gd" id="9_i1i3d"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nw1tu"]
 radius = 49.9996
@@ -340,21 +340,6 @@ _data = {
 "idle": SubResource("Animation_sh8ht")
 }
 
-[sub_resource type="Animation" id="Animation_klv7k"]
-resource_name = "damaged"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Node2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.133333, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_kdlvg"]
 length = 0.001
 tracks/0/type = "value"
@@ -370,13 +355,28 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_klv7k"]
+resource_name = "damaged"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n474h"]
 _data = {
 "RESET": SubResource("Animation_kdlvg"),
 "damaged": SubResource("Animation_klv7k")
 }
 
-[node name="PlayerBody" type="CharacterBody2D"]
+[node name="PlayerBody" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 3
 collision_mask = 5
 script = ExtResource("1_h3mog")
@@ -495,7 +495,7 @@ root_node = NodePath("../LightFairy")
 libraries = {
 "": SubResource("AnimationLibrary_abf2n")
 }
-speed_scale = 0.396
+speed_scale = 0.6
 script = ExtResource("9_i1i3d")
 
 [node name="Hurt" type="AnimationPlayer" parent="."]

@@ -56,6 +56,10 @@ func _physics_process(delta):
 	atk()
 	health_system()
 	
+	# If player has too much health
+	if health > 100:
+		health = 100
+	
 	# If player died
 	if health <= 0:
 		player_alive = false

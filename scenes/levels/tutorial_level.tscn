@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://cls067l7dbony"]
+[gd_scene load_steps=43 format=4 uid="uid://cls067l7dbony"]
 
 [ext_resource type="Script" path="res://scripts/tutorial_level.gd" id="1_au1wf"]
 [ext_resource type="Texture2D" uid="uid://2yckemn7ki6q" path="res://sprites/Pixel Crawler/Environment/Dungeon Prison/Assets/Tiles.png" id="2_8efxn"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scripts/player_body_tutorial.gd" id="8_rv2h2"]
 [ext_resource type="Texture2D" uid="uid://dnk4uirte5f4k" path="res://img/wasd.png" id="8_s08vf"]
 [ext_resource type="Texture2D" uid="uid://qbjfhjndwxp7" path="res://img/mouse.png" id="9_aaspb"]
+[ext_resource type="PackedScene" uid="uid://bj8rsiwi5lxot" path="res://scenes/props/heart.tscn" id="11_6i0hb"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_cs1ya"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -970,6 +971,11 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1f0gc"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uikee"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wgfn3"]
+size = Vector2(20, 4)
+
 [node name="TutorialLevel" type="Node2D"]
 script = ExtResource("1_au1wf")
 
@@ -1003,14 +1009,6 @@ position = Vector2(98, -184)
 [node name="torch4" parent="Torches" instance=ExtResource("5_4yco1")]
 position = Vector2(264, -178)
 
-[node name="SkeletonBody" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_6drby")]
-position = Vector2(1, -143)
-player = NodePath("../PlayerBody")
-
-[node name="PlayerBody" parent="." instance=ExtResource("7_bvii5")]
-position = Vector2(0, -3)
-script = ExtResource("8_rv2h2")
-
 [node name="Labels" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -1039,11 +1037,21 @@ label_settings = SubResource("LabelSettings_wm2l8")
 top_level = true
 layout_mode = 0
 offset_left = -80.0
-offset_top = -231.0
+offset_top = -255.0
 offset_right = 79.0
-offset_bottom = -214.0
+offset_bottom = -238.0
 text = "Go through the door to exit
 "
+label_settings = SubResource("LabelSettings_wm2l8")
+
+[node name="Label4" type="Label" parent="Labels"]
+top_level = true
+layout_mode = 0
+offset_left = -128.0
+offset_top = -229.0
+offset_right = 126.0
+offset_bottom = -212.0
+text = "Kill all enemies to proceed to the next room"
 label_settings = SubResource("LabelSettings_wm2l8")
 
 [node name="images" type="Control" parent="."]
@@ -1070,10 +1078,45 @@ offset_bottom = 99.0
 texture = ExtResource("9_aaspb")
 expand_mode = 1
 
-[node name="Exit" type="Area2D" parent="."]
+[node name="Exit" type="Node2D" parent="."]
 
-[node name="ExitShape" type="CollisionShape2D" parent="Exit"]
+[node name="ExitArea" type="Area2D" parent="Exit"]
+
+[node name="ExitShape" type="CollisionShape2D" parent="Exit/ExitArea"]
 position = Vector2(0, -183)
 shape = SubResource("RectangleShape2D_1f0gc")
 
-[connection signal="body_entered" from="Exit" to="." method="_on_exit_body_entered"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Exit"]
+position = Vector2(0, 25)
+collision_mask = 2
+physics_material_override = SubResource("PhysicsMaterial_uikee")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exit/StaticBody2D"]
+position = Vector2(0, -193)
+shape = SubResource("RectangleShape2D_wgfn3")
+
+[node name="Heals" type="Node2D" parent="."]
+
+[node name="Heart" parent="Heals" instance=ExtResource("11_6i0hb")]
+position = Vector2(249, -88)
+
+[node name="Heart2" parent="Heals" instance=ExtResource("11_6i0hb")]
+position = Vector2(211, 107)
+
+[node name="Heart3" parent="Heals" instance=ExtResource("11_6i0hb")]
+position = Vector2(-113, 109)
+
+[node name="Heart4" parent="Heals" instance=ExtResource("11_6i0hb")]
+position = Vector2(-201, -106)
+
+[node name="Skeletons" type="Node2D" parent="."]
+
+[node name="SkeletonBody" parent="Skeletons" node_paths=PackedStringArray("player") instance=ExtResource("6_6drby")]
+position = Vector2(1, -143)
+player = NodePath("../../PlayerBody")
+
+[node name="PlayerBody" parent="." instance=ExtResource("7_bvii5")]
+position = Vector2(0, -3)
+script = ExtResource("8_rv2h2")
+
+[connection signal="body_entered" from="Exit/ExitArea" to="." method="_on_exit_area_body_entered"]

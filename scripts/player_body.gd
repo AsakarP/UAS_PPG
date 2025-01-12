@@ -56,10 +56,16 @@ func _physics_process(delta):
 	atk()
 	health_system()
 	
+	# If player has too much health
+	if health > 100:
+		health = 100
+	
 	# If player died
 	if health <= 0:
 		player_alive = false
 		health = 0
+		TransitionScreen.transition()
+		await TransitionScreen.on_transition_finished
 		get_tree().change_scene_to_file("res://scenes/ui/retry.tscn")
 
 # Is a player
