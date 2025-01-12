@@ -21,14 +21,14 @@ func _physics_process(delta):
 		animated_sprite.flip_h = true
 	if Input.is_action_just_pressed("ui_attack") and not sword_animation_player.is_playing():
 		sword_animation_player.play("attack")
-	
+		
 	sword.rotation = mouse_direction.angle()
 	if sword.scale.y == 1 and mouse_direction.x < 0:
 		sword.scale.y = -1
 	elif sword.scale.y == -1 and mouse_direction.x > 0:
 		sword.scale.y = 1
 		
-	# WASD Movement
+	# WASD movement
 	var velocity = Vector2.ZERO
 	if Input.is_key_pressed(KEY_W):
 		velocity.y -= SPEED
@@ -58,21 +58,22 @@ func _physics_process(delta):
 	if health <= 0:
 		player_alive = false
 		health = 0
+		print("Player Killed")
 		get_tree().change_scene_to_file("res://scenes/ui/retryTutorial.tscn")
 
 # Is a player
 func player():
 	pass
 
-# Enemy attacks player
+# if enemy attacks
 func enemy_atk():
 	if enemies_in_atk_range.size() > 0 and enemy_atk_cooldown:
 		for enemy in enemies_in_atk_range:
 			health -= 5
 		enemy_atk_cooldown = false
 		$Atk_cooldown.start()
-
-# Enemy atk cooldown
+		print("Player HP:", health)
+# enemy attack cooldown
 func _on_atk_cooldown_timeout():
 	enemy_atk_cooldown = true
 
@@ -81,11 +82,12 @@ func atk():
 	if Input.is_action_just_pressed("ui_attack"):
 		attack = true
 
-# Player attack cooldown
+# Attack timeout
 func _on_deal_atk_timeout():
 	$deal_atk.stop()
 	Global.player_curr_atk = false
 	atk_in_progress = false
+	attack = false
 
 # Enemy enters player body
 func _on_player_hitbox_body_entered(body):
@@ -97,7 +99,7 @@ func _on_player_hitbox_body_exited(body):
 	if body.has_method("enemy") and body in enemies_in_atk_range:
 		enemies_in_atk_range.erase(body)
 
-# If sword enters enemys body
+# Sword enters enemys body
 func _on_sword_hitbox_body_entered(body):
 	if body.has_method("enemy"):
 		if attack == true:
@@ -105,7 +107,7 @@ func _on_sword_hitbox_body_entered(body):
 			atk_in_progress = true
 			$deal_atk.start()
 
-# If sword exits enemys body
+# Sword exits enemys body
 func _on_sword_hitbox_body_exited(body):
 	if body.has_method("enemy"):
 		attack = false
@@ -114,4 +116,3 @@ func _on_sword_hitbox_body_exited(body):
 func health_system():
 	var healthbar = $Healthbar
 	healthbar.value = health
-	

@@ -40,7 +40,6 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	# Combat
-	take_damage()
 	health_system()
 
 # Find player if player is far away
@@ -70,14 +69,14 @@ func _on_skele_hitbox_body_exited(body):
 		player_in_atk_range = false
 
 # Skeleton take damage
-func take_damage():
-	if Global.player_curr_atk == true:
-		if can_take_dmg == true:
-			health -= 20
-			$take_dmg_cooldown.start()
-			can_take_dmg = false
-			if health <= 0:
-				queue_free()
+func damage(amount):
+	if can_take_dmg == true:
+		health -= amount
+		$take_dmg_cooldown.start()
+		can_take_dmg = false
+		#print("Skeleton HP:", health)
+		if health <= 0:
+			queue_free()
 
 # Dmg Cooldown
 func _on_take_dmg_cooldown_timeout():

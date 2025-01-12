@@ -85,7 +85,6 @@ func atk():
 # Attack timeout
 func _on_deal_atk_timeout():
 	$deal_atk.stop()
-	Global.player_curr_atk = false
 	atk_in_progress = false
 	attack = false
 
@@ -103,7 +102,7 @@ func _on_player_hitbox_body_exited(body):
 func _on_sword_hitbox_body_entered(body):
 	if body.has_method("enemy"):
 		if attack == true:
-			Global.player_curr_atk = true
+			body.damage(20)
 			atk_in_progress = true
 			$deal_atk.start()
 
