@@ -1,9 +1,8 @@
-[gd_scene load_steps=27 format=4 uid="uid://crdbhkfh3xwai"]
+[gd_scene load_steps=26 format=4 uid="uid://crdbhkfh3xwai"]
 
-[ext_resource type="Script" path="res://hallway.gd" id="1_8crkh"]
 [ext_resource type="Texture2D" uid="uid://2yckemn7ki6q" path="res://sprites/Pixel Crawler/Environment/Dungeon Prison/Assets/Tiles.png" id="1_63ued"]
+[ext_resource type="Script" path="res://scripts/level/hallway.gd" id="1_w5ujx"]
 [ext_resource type="Texture2D" uid="uid://ddh8ym4754yfl" path="res://sprites/void.png" id="2_3rv34"]
-[ext_resource type="PackedScene" uid="uid://bj8rsiwi5lxot" path="res://scenes/props/heart.tscn" id="3_4qw80"]
 [ext_resource type="PackedScene" uid="uid://c0byy1eageio8" path="res://scenes/characters/player.tscn" id="4_sncvy"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_cs1ya"]
@@ -729,7 +728,7 @@ sources/2 = SubResource("TileSetAtlasSource_026n4")
 size = Vector2(20, 4)
 
 [node name="Hallway" type="Node2D"]
-script = ExtResource("1_8crkh")
+script = ExtResource("1_w5ujx")
 
 [node name="Darkness" type="DirectionalLight2D" parent="."]
 energy = 0.5
@@ -759,11 +758,6 @@ physics_material_override = SubResource("PhysicsMaterial_q0c7k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Exit/StaticBody2D"]
 shape = SubResource("RectangleShape2D_8p7r7")
-
-[node name="Healing" type="Node2D" parent="."]
-position = Vector2(135, -198)
-
-[node name="Heart" parent="Healing" instance=ExtResource("3_4qw80")]
 
 [node name="PlayerBody" parent="." instance=ExtResource("4_sncvy")]
 position = Vector2(-1, 137)

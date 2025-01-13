@@ -14,6 +14,9 @@ var player_alive = true
 var atk_in_progress = false
 var attack = false
 
+func _ready():
+	add_to_group("Player")
+
 func _physics_process(delta):
 	# Mouse tracking
 	var mouse_direction: Vector2 = (get_global_mouse_position() - global_position).normalized()
@@ -64,8 +67,6 @@ func _physics_process(delta):
 	if health <= 0:
 		player_alive = false
 		health = 0
-		TransitionScreen.transition()
-		await TransitionScreen.on_transition_finished
 		get_tree().change_scene_to_file("res://scenes/ui/retry.tscn")
 
 # Is a player
@@ -82,6 +83,7 @@ func enemy_atk():
 				print("Enemy:",enemy_name)
 			if enemy_name.begins_with("armoredskeleton"):
 				health -= 15
+				print("Enemy:",enemy_name)
 			print("Player HP:",health)
 			hurt.play("damaged")
 		enemy_atk_cooldown = false

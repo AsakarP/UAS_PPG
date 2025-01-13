@@ -16,6 +16,10 @@ signal enemy_died
 var health = 150
 var player_in_atk_range = false
 
+func _ready():
+	if not player:
+		player = get_tree().get_first_node_in_group("Player")
+
 func _physics_process(delta):
 	var distance_to_player = global_position.distance_to(player.global_position)
 	
@@ -95,4 +99,4 @@ func _on_take_dmg_cooldown_timeout():
 func health_system():
 	var healthbar = $Enemyhealthbar
 	healthbar.value = health
-	healthbar.visible = health < 100
+	healthbar.visible = health < 150

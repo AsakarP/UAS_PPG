@@ -1122,8 +1122,10 @@ position = Vector2(451, -21)
 player = NodePath("../../PlayerBody")
 
 [node name="Armored_Skeletons" type="Node2D" parent="."]
+position = Vector2(0, 23)
 
-[node name="ArmoredSkeletonBody" parent="Armored_Skeletons" instance=ExtResource("8_7jnyv")]
+[node name="ArmoredSkeletonBody" parent="." instance=ExtResource("8_7jnyv")]
+position = Vector2(0, 23)
 
 [node name="PlayerBody" parent="." instance=ExtResource("8_354h7")]
 position = Vector2(-1, 138)

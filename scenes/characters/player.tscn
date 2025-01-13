@@ -1,6 +1,6 @@
 [gd_scene load_steps=43 format=3 uid="uid://c0byy1eageio8"]
 
-[ext_resource type="Script" path="res://scripts/player_body.gd" id="1_h3mog"]
+[ext_resource type="Script" path="res://scripts/character/player_body.gd" id="1_h3mog"]
 [ext_resource type="Texture2D" uid="uid://ixlyiw31mk6g" path="res://sprites/Pixel Crawler/Heroes/Knight/Idle/Idle-Sheet.png" id="1_prau1"]
 [ext_resource type="Texture2D" uid="uid://bahu7qysaaln0" path="res://sprites/Pixel Crawler/Heroes/Knight/Run/Run-Sheet.png" id="3_f0733"]
 [ext_resource type="Texture2D" uid="uid://bi6rhocbxeo6n" path="res://sprites/Pixel Crawler/Weapons/Sword/vecteezy_sword-pixel-art_12014529-removebg-preview.png" id="4_rji4c"]
@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://co14tgrxutrb6" path="res://sprites/effects (new)/slash_effect_anim_spritesheet.png" id="5_252ed"]
 [ext_resource type="Texture2D" uid="uid://cms4ypximlrxr" path="res://sprites/Pixel Crawler/Weapons/Hands/Hands.png" id="7_dvd1y"]
 [ext_resource type="Texture2D" uid="uid://bubuy5envswj5" path="res://sprites/cosmetics/fairyPink.png" id="7_xljmh"]
-[ext_resource type="Script" path="res://scripts/fairy_animation.gd" id="9_i1i3d"]
+[ext_resource type="Script" path="res://scripts/others/fairy_animation.gd" id="9_i1i3d"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nw1tu"]
 radius = 49.9996

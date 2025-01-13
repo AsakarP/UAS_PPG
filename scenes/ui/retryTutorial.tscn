@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cm1qhn638jn1i"]
 
-[ext_resource type="Script" path="res://scripts/retry_tutorial.gd" id="1_a6u4f"]
+[ext_resource type="Script" path="res://scripts/ui/retry_tutorial.gd" id="1_a6u4f"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qpayw"]
 font_size = 34

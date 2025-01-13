@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://ccvacaspcraap"]
 
-[ext_resource type="Script" path="res://scripts/skeleton_body.gd" id="1_qva60"]
+[ext_resource type="Script" path="res://scripts/enemy/skeleton_body.gd" id="1_qva60"]
 [ext_resource type="Texture2D" uid="uid://pc2dryqghdbx" path="res://sprites/Pixel Crawler/Enemy/Skeleton Crew/Skeleton - Base/Idle/Idle-Sheet.png" id="1_tfskf"]
 [ext_resource type="Texture2D" uid="uid://elq3id8m2p00" path="res://sprites/Pixel Crawler/Enemy/Skeleton Crew/Skeleton - Base/Run/Run-Sheet.png" id="2_g07qy"]
 
