@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://cls067l7dbony"]
+[gd_scene load_steps=45 format=4 uid="uid://cls067l7dbony"]
 
 [ext_resource type="Script" path="res://scripts/level/tutorial_level.gd" id="1_au1wf"]
 [ext_resource type="Texture2D" uid="uid://2yckemn7ki6q" path="res://sprites/Pixel Crawler/Environment/Dungeon Prison/Assets/Tiles.png" id="2_8efxn"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://qbjfhjndwxp7" path="res://img/mouse.png" id="9_aaspb"]
 [ext_resource type="Texture2D" uid="uid://bcm2mmqpvurng" path="res://img/Arrow.png" id="9_kvw2j"]
 [ext_resource type="PackedScene" uid="uid://bj8rsiwi5lxot" path="res://scenes/props/heart.tscn" id="11_6i0hb"]
+[ext_resource type="AudioStream" uid="uid://bujeluoquiptc" path="res://audio/ambience.mp3" id="13_ye5jw"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_cs1ya"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -1137,5 +1138,10 @@ player = NodePath("../../PlayerBody")
 [node name="PlayerBody" parent="." instance=ExtResource("7_bvii5")]
 position = Vector2(0, -3)
 script = ExtResource("8_rv2h2")
+
+[node name="Ambience" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_ye5jw")
+volume_db = -3.0
+autoplay = true
 
 [connection signal="body_entered" from="Exit/ExitArea" to="." method="_on_exit_area_body_entered"]

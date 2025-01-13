@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://ccm0u4gul2s01"]
+[gd_scene load_steps=48 format=4 uid="uid://ccm0u4gul2s01"]
 
 [ext_resource type="Script" path="res://scripts/level/game_level3.gd" id="1_u11u1"]
 [ext_resource type="Texture2D" uid="uid://2yckemn7ki6q" path="res://sprites/Pixel Crawler/Environment/Dungeon Prison/Assets/Tiles.png" id="2_ss2o6"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dcosocf0pyqio" path="res://scenes/enemy/armored_skeleton.tscn" id="8_6ppah"]
 [ext_resource type="PackedScene" uid="uid://c0byy1eageio8" path="res://scenes/characters/player.tscn" id="9_g24xu"]
 [ext_resource type="Texture2D" uid="uid://bcm2mmqpvurng" path="res://img/Arrow.png" id="10_c6i3q"]
+[ext_resource type="AudioStream" uid="uid://bujeluoquiptc" path="res://audio/ambience.mp3" id="11_d621n"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_cs1ya"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -1228,5 +1229,10 @@ color = Color(1, 1, 0.227451, 1)
 energy = 0.7
 texture = SubResource("GradientTexture2D_p51d5")
 texture_scale = 3.6
+
+[node name="Ambience" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_d621n")
+volume_db = -3.0
+autoplay = true
 
 [connection signal="body_entered" from="Exit/Next" to="." method="_on_next_body_entered"]

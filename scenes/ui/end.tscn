@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://0h4k3555ficv"]
+[gd_scene load_steps=7 format=3 uid="uid://0h4k3555ficv"]
 
 [ext_resource type="Script" path="res://scripts/ui/retry.gd" id="1_n81c1"]
+[ext_resource type="AudioStream" uid="uid://ttsqn8le7hrs" path="res://audio/BGM.mp3" id="2_ns6u2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qpayw"]
 font_size = 20
@@ -102,6 +103,12 @@ color = Color(0, 0, 0, 1)
 libraries = {
 "": SubResource("AnimationLibrary_rwd6s")
 }
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ns6u2")
+volume_db = -1.0
+autoplay = true
+parameters/looping = true
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Retry" to="." method="_on_retry_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

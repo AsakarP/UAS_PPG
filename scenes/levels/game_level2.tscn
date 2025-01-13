@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=4 uid="uid://c47htxlvtqjdd"]
+[gd_scene load_steps=46 format=4 uid="uid://c47htxlvtqjdd"]
 
 [ext_resource type="Script" path="res://scripts/level/game_level2.gd" id="1_khg7f"]
 [ext_resource type="Texture2D" uid="uid://2yckemn7ki6q" path="res://sprites/Pixel Crawler/Environment/Dungeon Prison/Assets/Tiles.png" id="2_h1lsd"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://ccvacaspcraap" path="res://scenes/enemy/skeleton.tscn" id="7_bxf74"]
 [ext_resource type="PackedScene" uid="uid://dcosocf0pyqio" path="res://scenes/enemy/armored_skeleton.tscn" id="8_7jnyv"]
 [ext_resource type="PackedScene" uid="uid://c0byy1eageio8" path="res://scenes/characters/player.tscn" id="8_354h7"]
+[ext_resource type="AudioStream" uid="uid://bujeluoquiptc" path="res://audio/ambience.mp3" id="11_mdnlg"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_cs1ya"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -1146,5 +1147,10 @@ libraries = {
 }
 autoplay = "fade_out"
 speed_scale = 0.3
+
+[node name="Ambience" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_mdnlg")
+volume_db = -3.0
+autoplay = true
 
 [connection signal="body_entered" from="Exit/Next" to="." method="_on_next_body_entered"]

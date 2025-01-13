@@ -6,6 +6,8 @@ extends CharacterBody2D
 @onready var sword: Node2D = get_node("PlayerSword")
 @onready var sword_animation_player : AnimationPlayer = sword.get_node("SwordAnimationPlayer")
 @onready var hurt = $Hurt
+@onready var slash_sfx = $slash_sfx
+
 var SPEED = 60
 var enemies_in_atk_range = []
 var enemy_atk_cooldown = true
@@ -95,6 +97,7 @@ func _on_atk_cooldown_timeout():
 # Player attack
 func atk():
 	if Input.is_action_just_pressed("ui_attack"):
+		slash_sfx.play()
 		attack = true
 
 # Attack timeout

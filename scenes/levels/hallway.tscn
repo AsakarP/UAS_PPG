@@ -1,9 +1,10 @@
-[gd_scene load_steps=26 format=4 uid="uid://crdbhkfh3xwai"]
+[gd_scene load_steps=27 format=4 uid="uid://crdbhkfh3xwai"]
 
 [ext_resource type="Texture2D" uid="uid://2yckemn7ki6q" path="res://sprites/Pixel Crawler/Environment/Dungeon Prison/Assets/Tiles.png" id="1_63ued"]
 [ext_resource type="Script" path="res://scripts/level/hallway.gd" id="1_w5ujx"]
 [ext_resource type="Texture2D" uid="uid://ddh8ym4754yfl" path="res://sprites/void.png" id="2_3rv34"]
 [ext_resource type="PackedScene" uid="uid://c0byy1eageio8" path="res://scenes/characters/player.tscn" id="4_sncvy"]
+[ext_resource type="AudioStream" uid="uid://bujeluoquiptc" path="res://audio/ambience.mp3" id="5_viu2s"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_cs1ya"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -772,5 +773,10 @@ shape = SubResource("RectangleShape2D_8p7r7")
 
 [node name="PlayerBody" parent="." instance=ExtResource("4_sncvy")]
 position = Vector2(-1, 137)
+
+[node name="Ambience" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_viu2s")
+volume_db = -3.0
+autoplay = true
 
 [connection signal="body_entered" from="Exit/Next" to="." method="_on_next_body_entered"]

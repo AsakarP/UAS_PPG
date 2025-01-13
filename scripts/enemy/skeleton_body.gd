@@ -4,11 +4,11 @@ extends CharacterBody2D
 # Skeleton variables
 var SPEED = 50
 var stop_range = 20
+var can_take_dmg = true
 @export var player: Node2D
 @onready var animated_sprite = $Node2D/SkeletonSprite
 @onready var SkeleNav = $SkeletonNavigation
 @onready var dmgHighlight = $damage_highlight
-var can_take_dmg = true
 
 signal enemy_died
 
