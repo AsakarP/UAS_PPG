@@ -28,6 +28,7 @@ func _physics_process(delta):
 		animated_sprite.flip_h = true
 	if Input.is_action_just_pressed("ui_attack") and not sword_animation_player.is_playing():
 		sword_animation_player.play("attack")
+		slash_sfx.play()
 		
 	sword.rotation = mouse_direction.angle()
 	if sword.scale.y == 1 and mouse_direction.x < 0:
@@ -97,7 +98,6 @@ func _on_atk_cooldown_timeout():
 # Player attack
 func atk():
 	if Input.is_action_just_pressed("ui_attack"):
-		slash_sfx.play()
 		attack = true
 
 # Attack timeout
