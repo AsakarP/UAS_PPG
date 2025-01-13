@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-# Enemy Armored Skeleton
+# Enemy Golem
 # Skeleton variables
-var SPEED = 40
+var SPEED = 55
 var stop_range = 20
 @export var player: Node2D
 @onready var animated_sprite = $Node2D/SkeletonSprite
@@ -13,7 +13,7 @@ var can_take_dmg = true
 signal enemy_died
 
 # Combat variables
-var health = 150
+var health = 300
 var player_in_atk_range = false
 
 func _ready():
@@ -99,4 +99,4 @@ func _on_take_dmg_cooldown_timeout():
 func health_system():
 	var healthbar = $Enemyhealthbar
 	healthbar.value = health
-	healthbar.visible = health < 150
+	healthbar.visible = health < 300

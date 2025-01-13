@@ -1,0 +1,227 @@
+[gd_scene load_steps=26 format=3 uid="uid://cja4rccp1n0iu"]
+
+[ext_resource type="Script" path="res://scripts/enemy/golem.gd" id="1_mc3m5"]
+[ext_resource type="Texture2D" uid="uid://n0ps8v0kmtr3" path="res://sprites/Mecha-stone Golem 0.1/PNG sheet/Character_sheet.png" id="2_iguay"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gpi31"]
+atlas = ExtResource("2_iguay")
+region = Rect2(200, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mbk7n"]
+atlas = ExtResource("2_iguay")
+region = Rect2(0, 600, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6l0om"]
+atlas = ExtResource("2_iguay")
+region = Rect2(100, 600, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6bfn"]
+atlas = ExtResource("2_iguay")
+region = Rect2(200, 600, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3086d"]
+atlas = ExtResource("2_iguay")
+region = Rect2(300, 600, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j17cs"]
+atlas = ExtResource("2_iguay")
+region = Rect2(400, 600, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rtlk4"]
+atlas = ExtResource("2_iguay")
+region = Rect2(500, 600, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cm4pm"]
+atlas = ExtResource("2_iguay")
+region = Rect2(600, 600, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hafg7"]
+atlas = ExtResource("2_iguay")
+region = Rect2(700, 600, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v43b0"]
+atlas = ExtResource("2_iguay")
+region = Rect2(800, 600, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ka5n5"]
+atlas = ExtResource("2_iguay")
+region = Rect2(900, 600, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8i2s"]
+atlas = ExtResource("2_iguay")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mdvx4"]
+atlas = ExtResource("2_iguay")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cp2jd"]
+atlas = ExtResource("2_iguay")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxdr6"]
+atlas = ExtResource("2_iguay")
+region = Rect2(0, 100, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vccc8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gpi31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mbk7n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6l0om")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r6bfn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3086d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j17cs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rtlk4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cm4pm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hafg7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v43b0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ka5n5")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u8i2s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mdvx4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cp2jd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxdr6")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_p0836"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_d2kmm"]
+resource_name = "damaged"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hcd1t"]
+_data = {
+"RESET": SubResource("Animation_p0836"),
+"damaged": SubResource("Animation_d2kmm")
+}
+
+[sub_resource type="Gradient" id="Gradient_qmvlr"]
+offsets = PackedFloat32Array(0, 0.733766)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vy0hd"]
+gradient = SubResource("Gradient_qmvlr")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7mgua"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eno2g"]
+radius = 19.0
+
+[node name="Golem" type="CharacterBody2D"]
+script = ExtResource("1_mc3m5")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="SkeletonSprite" type="AnimatedSprite2D" parent="Node2D"]
+sprite_frames = SubResource("SpriteFrames_vccc8")
+animation = &"run"
+autoplay = "idle"
+frame_progress = 0.539162
+
+[node name="damage_highlight" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hcd1t")
+}
+
+[node name="SkeleShadow" type="PointLight2D" parent="."]
+position = Vector2(-0.5, 16)
+scale = Vector2(0.390625, 0.25)
+energy = 0.3
+blend_mode = 1
+texture = SubResource("GradientTexture2D_vy0hd")
+
+[node name="SkeletonCollision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7)
+shape = SubResource("CircleShape2D_7mgua")
+
+[node name="SkeletonNavigation" type="NavigationAgent2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="Skele_hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Skele_hitbox"]
+shape = SubResource("CircleShape2D_eno2g")
+
+[node name="take_dmg_cooldown" type="Timer" parent="."]
+wait_time = 1.2
+
+[node name="Enemyhealthbar" type="ProgressBar" parent="."]
+modulate = Color(7.70092e-07, 0.841499, 0.917698, 1)
+offset_left = -11.0
+offset_top = 20.0
+offset_right = 12.0
+offset_bottom = 26.0
+max_value = 300.0
+show_percentage = false
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Skele_hitbox" to="." method="_on_skele_hitbox_body_entered"]
+[connection signal="body_exited" from="Skele_hitbox" to="." method="_on_skele_hitbox_body_exited"]
+[connection signal="timeout" from="take_dmg_cooldown" to="." method="_on_take_dmg_cooldown_timeout"]

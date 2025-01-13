@@ -80,11 +80,10 @@ func enemy_atk():
 			var enemy_name = enemy.name.to_lower()
 			if enemy_name.begins_with("skeleton") and not enemy_name.begins_with("armored"):
 				health -= 10
-				print("Enemy:",enemy_name)
 			if enemy_name.begins_with("armoredskeleton"):
 				health -= 15
-				print("Enemy:",enemy_name)
-			print("Player HP:",health)
+			if enemy_name.begins_with("golem"):
+				health -= 25
 			hurt.play("damaged")
 		enemy_atk_cooldown = false
 		$Atk_cooldown.start()
