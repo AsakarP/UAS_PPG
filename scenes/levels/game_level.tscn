@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://cu4s7jckyysvh"]
+[gd_scene load_steps=44 format=4 uid="uid://cu4s7jckyysvh"]
 
 [ext_resource type="Script" path="res://scripts/game_level.gd" id="1_3lxau"]
 [ext_resource type="Texture2D" uid="uid://2yckemn7ki6q" path="res://sprites/Pixel Crawler/Environment/Dungeon Prison/Assets/Tiles.png" id="1_e27ej"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://brsvgdpelwdco" path="res://scenes/props/torch.tscn" id="6_5tp17"]
 [ext_resource type="PackedScene" uid="uid://ccvacaspcraap" path="res://scenes/enemy/skeleton.tscn" id="6_wydjx"]
 [ext_resource type="PackedScene" uid="uid://bj8rsiwi5lxot" path="res://scenes/props/heart.tscn" id="8_ldtfc"]
+[ext_resource type="Texture2D" uid="uid://bcm2mmqpvurng" path="res://img/Arrow.png" id="9_tgyya"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_cs1ya"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -1012,6 +1013,14 @@ _data = {
 [node name="GameLevel" type="Node2D"]
 script = ExtResource("1_3lxau")
 
+[node name="Pointer" type="TextureRect" parent="."]
+offset_left = -10.0
+offset_top = -232.0
+offset_right = 30.0
+offset_bottom = -192.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_tgyya")
+
 [node name="Darkness" type="DirectionalLight2D" parent="."]
 energy = 0.5
 blend_mode = 1
@@ -1043,21 +1052,20 @@ position = Vector2(98, -184)
 position = Vector2(264, -178)
 
 [node name="Exit" type="Node2D" parent="."]
+position = Vector2(0, -181)
 
 [node name="Next" type="Area2D" parent="Exit"]
-position = Vector2(0, -181)
 collision_mask = 2
 
 [node name="NextShape" type="CollisionShape2D" parent="Exit/Next"]
 shape = SubResource("RectangleShape2D_qktha")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Exit"]
-position = Vector2(0, 25)
+position = Vector2(0, 13)
 collision_mask = 2
 physics_material_override = SubResource("PhysicsMaterial_mcs1m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Exit/StaticBody2D"]
-position = Vector2(0, -193)
 shape = SubResource("RectangleShape2D_p7s18")
 
 [node name="Healing" type="Node2D" parent="."]

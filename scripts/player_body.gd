@@ -76,10 +76,17 @@ func player():
 func enemy_atk():
 	if enemies_in_atk_range.size() > 0 and enemy_atk_cooldown:
 		for enemy in enemies_in_atk_range:
-			health -= 5
+			var enemy_name = enemy.name.to_lower()
+			if enemy_name.begins_with("skeleton") and not enemy_name.begins_with("armored"):
+				health -= 10
+				print("Enemy:",enemy_name)
+			if enemy_name.begins_with("armoredskeleton"):
+				health -= 15
+			print("Player HP:",health)
 			hurt.play("damaged")
 		enemy_atk_cooldown = false
 		$Atk_cooldown.start()
+		
 # enemy attack cooldown
 func _on_atk_cooldown_timeout():
 	enemy_atk_cooldown = true
