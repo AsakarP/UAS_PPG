@@ -176,7 +176,7 @@ autostart = true
 shape = SubResource("CircleShape2D_eno2g")
 
 [node name="take_dmg_cooldown" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 1.25
 
 [node name="Enemyhealthbar" type="ProgressBar" parent="."]
 modulate = Color(1, 0, 0, 1)
